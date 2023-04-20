@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -14,8 +14,11 @@ class Interpreter {
 	int index = 0, ptr = 0;
 	std::string source;
 
-	void run() {
+	void exec() {
 		std::vector<int> Stack;
+
+		/* Creating a check points vector with relative positions to manage 
+		loops while running the program */
 
 		for (int i = 0; i < this->source.size(); i++) {
 			this->checkPoints.push_back(i);
@@ -31,6 +34,8 @@ class Interpreter {
 		}
 
 		Stack = {};
+
+		/* Brainfuck runtime */
 
 		while (this->index != this->source.size()) {
 			char ch = this->source[this->index];
@@ -71,11 +76,22 @@ class Interpreter {
 		}
 	}
 public:
-	void fromString(std::string source) {
-		this->source = source;
-		this->run();
-	}
-	void fromFile() {
+	// Those functions enable running the BrainFuck script from string or file
 
+	void run(std::string source) {
+		this->source = source;
+		this->exec();
+	}
+	void run(std::ifstream & source) {
+		if (source.is_open()) {
+			std::string txt;
+			this->source = "";
+
+			while (std::getline(source, txt)) {
+				this->source += txt;
+			}
+
+			this->exec();
+		}
 	}
 };
