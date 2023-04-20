@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <iostream>
 #include <string>
@@ -6,15 +6,21 @@
 #include <fstream>
 #include <cstdio>
 
-class Interpreter {
-	std::ifstream inFile;
+#include <conio.h>
+#include <stdio.h>
 
+class Interpreter {
 	std::vector<int> checkPoints, memory = { 0 };
 
 	int index = 0, ptr = 0;
 	std::string source;
 
 	void exec() {
+		this->index = 0; 
+		this->ptr = 0;
+		this->memory = { 0 };
+		this->checkPoints = {};
+
 		std::vector<int> Stack;
 
 		/* Creating a check points vector with relative positions to manage 
@@ -57,7 +63,8 @@ class Interpreter {
 				this->memory[this->ptr]--;
 				break;
 			case ',':
-				this->memory[this->ptr] = getchar();
+				this->memory[this->ptr] = getch();
+				std::cout << (char)this->memory[this->ptr];
 				break;
 			case '.':
 				std::cout << (char)this->memory[this->ptr];
