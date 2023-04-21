@@ -1,46 +1,25 @@
 # Brainfuck.cpp
 
-A Brainfuck interpreter written with C++!
-
-## Example
+A simple Brainfuck interpreter written in C++! First of all, start by including the `Brainfuck.h` file:
 
 ```cpp
-/*
-Brainfuck.cpp :
- 
-Unit test
-*/
-
 #include "Brainfuck.h"
-
-int main()
-{
-	// Interpreter initialization
-	Interpreter i = Interpreter();
-
-	// Running from string
-	i.run(">++++++++[<+++++++++>-]<.>++++[<+++++++>-]<+.+++++++..+++.>>++++++[<+++++++>-]<++ .------------. > ++++++[<++++++++ + >-]<+.<.++ + .------.--------.>> > ++++[<++++++++>-] < +.");
-
-	// Running from file
-	std::ifstream e("../../../../Brainfuck/Fib.bf");
-	i.run(e);
-
-	return 0;
-}
 ```
 
-### Output
+To start by creating the `Interpreter` class:
 
+```cpp
+// Interpreter initialization
+Interpreter i = Interpreter();
 ```
-Hello, World!0
-1
-1
-2
-3
-5
-8
-13
-21
-34
-...
+
+Now, you're ready to use the interpreter. You can load the code from a string, or an ifstream:
+
+```cpp
+// Running from string
+i.run(">++++++++[<+++++++++>-]<.>++++[<+++++++>-]<+.+++++++..+++.>>++++++[<+++++++>-]<++ .------------. > ++++++[<++++++++ + >-]<+.<.++ + .------.--------.>> > ++++[<++++++++>-] < +.");
+
+// Running from file
+std::ifstream e("../../../../Brainfuck/Fib.bf");
+i.run(e);
 ```
